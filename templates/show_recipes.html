@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="container-fluid space padding">
+    <div class="row bg">
+        {% for recipes in recipes %}
+    <div class="col-md-3">
+        <img class="border size"src="{{recipes.imageURL}}"></img>
+    </div>
+    <div class="col-md-9">
+        <div>
+        <h2 class="font">{{recipes.name}}</h2>
+        </div>
+        <div>
+            <i class="material-icons prefix">timer</i>
+    preparation: <strong>{{recipes.preparation}}</strong></div>
+        <div>&nbsp; &nbsp; &nbsp; &nbsp;Cooking: <strong>{{recipes.cooking}}</strong></div>
+                          
+    </div>
+    {% endfor %}
+    </div>
+</section>
+
+{% endblock %}

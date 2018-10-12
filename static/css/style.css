@@ -1,0 +1,23 @@
+.space{
+    margin-top: 45px;
+}
+.border {
+    border: 5px solid black;
+    padding: 1px;
+}
+.size {
+     width: 300px;
+    height: 250px;
+}
+.bg{
+    background-color:lemonchiffon;
+    
+}
+.padding{
+    padding-left:0px;
+}
+.font{
+    font-family: 'Libre Baskerville', serif;
+    margin-top:15px;
+    
+}
