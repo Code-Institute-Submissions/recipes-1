@@ -15,7 +15,7 @@
     <div class="nav-wrapper">
       <a href="/" class="brand-logo">Get Your Recipe</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="{{url_for('login', register_id = register._id)}}">Login</a></li>
+        <li><a href="{{url_for('index')}}">Login</a></li>
       </ul>
     </div>
   </nav>
@@ -27,6 +27,11 @@
           <i class="material-icons prefix">account_circle</i>
           <input id="username" name='username' type="text" class="validate" !required>
           <label for="icon_prefix">User Name</label>
+          {% for message in messages %} 
+                     <h5 class="font3">
+                         {{ message }}                                                                
+                     </h5>
+                   {% endfor %}
         </div>
         </div>
         <div class="row">

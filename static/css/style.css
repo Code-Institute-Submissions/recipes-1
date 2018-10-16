@@ -10,7 +10,7 @@
     height: 250px;
 }
 .bg{
-    background-color:lemonchiffon;
+    background-color:#fcf4ec;
     
 }
 .padding{
@@ -19,5 +19,7 @@
 .font{
     font-family: 'Libre Baskerville', serif;
     margin-top:15px;
-    
+}
+.nav-wrapper a{
+    text-decoration: none;
 }

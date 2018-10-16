@@ -10,20 +10,30 @@
     <title>Document</title>
 </head>
 <body>
+   <header>
+        <nav>
+    <div class="nav-wrapper">
+      <a href="/" class="brand-logo">Get Your Recipe</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="{{url_for('register')}}">Register</a></li>
+      </ul>
+    </div>
+  </nav>
+    </header>
     <section class="container">
-    <div class="row">
-    <form action='{{url_for("login")}}' method='POST'class="col s12">
       <div class="row">
-          <div class="input-field col s6">
+    <form action='{{url_for("login")}}' method='POST' class="col s12">
+      <div class="row">
+        <div class="input-field col s3">
           <i class="material-icons prefix">account_circle</i>
-          <input id="username" name='username' type="text" value="{{register.username}}" class="validate">
-          <label for="icon_prefix">user Name</label>
+          <input id="username" name='username' type="text" class="validate">
+          <label for="icon_prefix">User Name</label>
         </div>
-        <div class="input-field col s6">
-          <i class="material-icons prefix">vpn</i>
-          {% for reg in register %}
-          <input id="password" name='password' type="tel" value="{{register.password}}"class="validate">
-          {% endfor %}
+        </div>
+        <div class="row">
+        <div class="input-field col s3">
+          <i class="material-icons prefix">vpn_key</i>
+          <input id="password" name='password' type="tel" class="validate">
           <label for="icon_telephone">Password</label>
         </div>
       </div>
@@ -36,7 +46,7 @@
     </div>
     </form>
   </div>
-  </section>
+    </section>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>

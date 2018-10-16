@@ -1,24 +1,47 @@
 {% extends "base.html" %}
 {% block content %}
-
-<section class="container-fluid space padding">
+<button><a href="{{url_for('get_recipe')}}">Back</a></button>
+<section class="container-fluid space">
+    {% for recipes in recipes %}
     <div class="row bg">
-        {% for recipes in recipes %}
+        
     <div class="col-md-3">
-        <img class="border size"src="{{recipes.imageURL}}"></img>
+        <img src="{{recipes.imageURL}}"></img>
     </div>
-    <div class="col-md-9">
+    <div class="col-md-8">
         <div>
         <h2 class="font">{{recipes.name}}</h2>
         </div>
         <div>
-            <i class="material-icons prefix">timer</i>
+            <form class="material-icons" action="{{ url_for('upvote', recipes_id=recipes._id)}}" method="POST">
+                        <button class="upvotesbtn upvote-count" name='vote' type="submit"><i>thumb_up</i></button></form> <strong>{{recipes.votes}}</strong>
+        </div>
+        <div>
+            <i class="material-icons prefix">alarm</i>
     preparation: <strong>{{recipes.preparation}}</strong></div>
         <div>&nbsp; &nbsp; &nbsp; &nbsp;Cooking: <strong>{{recipes.cooking}}</strong></div>
-                          
+           <div>
+              <i class="material-icons prefix">rate_review</i> 
+             Credit To: <strong>{{recipes.creditTo}}</strong>
+           </div>               
     </div>
-    {% endfor %}
-    </div>
+     </div>
+     <div class="row">
+         <div class="col-md-12">
+             <h4>Method</h4>
+             <ul>
+                 <li><strong>{{recipes.steps}}</strong></li>
+             </ul>
+             
+         </div>
+         
+         <div class="col-md-12">
+             <h4>Ingredients<i class="material-icons prefix">shopping_basket</i></h4>
+             {{recipes.ingredients}}
+         </div>
+     </div>
+     {% endfor %}
 </section>
+
 
 {% endblock %}

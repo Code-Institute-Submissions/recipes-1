@@ -1,19 +1,19 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>Add Recipes</h1>
+<h1>Edit Recipes</h1>
 <div class="row">
-    <form action='{{url_for("insert_recipes")}}' method="POST"class="col s12">
+    <form action='{{url_for("update_recipes",recipes_id=recipes._id)}}' method="POST"class="col s12">
       <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix">account_circle</i>
-          <input id="name" name='name'type="text" class="validate" !required>
+          <input id="name" name='name'type="text" class="validate" value='{{recipes.name}}'!required>
           <label for="icon_prefix">Recipe Name</label>
         </div>
         </div>
         <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix">shopping_basket</i>
-          <input id="ingredients" name='ingredients'type="text" class="validate remove_field"!required>
+          <input id="ingredients" name='ingredients'type="text" value='{{recipes.ingredients}}' class="validate remove_field"!required>
           <label for="icon_telephone">Ingredients</label>
         </div>
 </div>
@@ -21,26 +21,26 @@
       <div class="row">
           <div class="input-field col s6">
           <i class="material-icons prefix">description</i>
-          <textarea name="steps" id="steps" class="materialize-textarea" data-length="2500" !required></textarea>
+          <textarea name="steps" id="steps" class="materialize-textarea" data-length="2500" value='{{recipes.steps}}'!required>{{recipes.steps}}</textarea>
           <label for="icon_telephone">Steps</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix">insert_photo</i>
-          <input id="imageURL" name='imageURL'type="text" class="validate">
+          <input id="imageURL" name='imageURL'type="text" value='{{recipes.imageURL}}' class="validate">
           <label for="icon_telephone">Image URL</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix">timer</i>
-          <input id="preparation" name='preparation'type="text" class="validate">
+          <input id="preparation" name='preparation'type="text" value='{{recipes.preparation}}'class="validate">
           <label for="icon_telephone">Preparation Time</label>
         </div>
                 <div class="input-field col s6">
           <i class="material-icons prefix">hourglass_full</i>
-          <input id="cooking" name='cooking'type="text" class="validate">
+          <input id="cooking" name='cooking'type="text" class="validate" value='{{recipes.cooking}}'>
           <label for="icon_telephone">Cooking Time</label>
         </div>
       </div>
@@ -49,14 +49,14 @@
       <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix">account_circle</i>
-          <input id="credit" name='credit'type="text" class="validate">
-          <label for="icon_telephone">credits to</label>
+          <input id="credit" name='credit'type="text" value='{{recipes.creditTo}}' class="validate">
+          <label for="icon_telephone">credits To {{recipes.creditTo}}</label>
         </div>
       </div>
       
       <div class="row">
           <div class="col-md-12">
-      <button class="btn waves-effect waves-light" type="submit" name="action">Add Recipe
+      <button class="btn waves-effect waves-light" type="submit" name="action">Edit Recipe
     <i class="material-icons right">playlist_add</i>
   </button>
   </div>
