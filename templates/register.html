@@ -7,25 +7,19 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
     <title>Document</title>
 </head>
-<body>
-    <header>
-        <nav>
-    <div class="nav-wrapper">
-      <a href="/" class="brand-logo">Get Your Recipe</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="{{url_for('index')}}">Login</a></li>
-      </ul>
-    </div>
-  </nav>
-    </header>
-    <section class="container">
-    <form action='{{url_for("register")}}' method='POST' class="col s12">
+<body class="bg-image">
+    
+    <section class="container text-center position-of-content">
+      <a class='link-text'href="/"><h1 class="font-color">Get your Recipes</h1></a>
+    <form action='{{url_for("register")}}' method='POST' class="col s12 text-center bg-form">
+      <h4 class="font-color">Register</h4>
       <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field text-center font-color">
           <i class="material-icons prefix">account_circle</i>
-          <input id="username" name='username' type="text" class="validate" !required>
+          <input id="username" name='username' type="text" class="validate" required>
           <label for="icon_prefix">User Name</label>
           {% for message in messages %} 
                      <h5 class="font3">
@@ -35,16 +29,16 @@
         </div>
         </div>
         <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field text-center font-color">
           <i class="material-icons prefix">email</i>
-          <input id="email" name='email'type="email" class="validate" !required>
+          <input id="email" name='email'type="email" class="validate" required>
           <label for="icon_telephone">Email</label>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field text-center font-color">
           <i class="material-icons prefix">vpn_key</i>
-          <input id="password" name='password'type="password" class="validate" !required>
+          <input id="password" name='password'type="password" class="validate" required>
           <label for="icon_telephone">Password</label>
         </div>
       </div>
@@ -55,6 +49,7 @@
   </button>
   </div>
     </div>
+    <a class="font-color link-text" href="{{url_for('index')}}"><strong>Have a account?</strong></a>
     </form>
   </div>
   </section>

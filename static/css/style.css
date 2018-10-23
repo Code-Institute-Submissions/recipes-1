@@ -23,3 +23,29 @@
 .nav-wrapper a{
     text-decoration: none;
 }
+.text-center{
+    text-align: center;
+    margin: auto;
+}
+.bg-form{
+    background:rgba(0, 0, 0, 0.4);
+}
+.bg-image{
+    background-image: url('../images/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.btn-bg{
+    background-color: #3cbaec;
+}
+.position-of-content{
+    margin-top: 160px;
+}
+.link-text a{
+    text-decoration: none;
+    color: white;
+}
+.font-color{
+    color:white;
+}

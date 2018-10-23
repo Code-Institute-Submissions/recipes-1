@@ -7,43 +7,47 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />    
     <title>Document</title>
 </head>
-<body>
-   <header>
-        <nav>
-    <div class="nav-wrapper">
-      <a href="/" class="brand-logo">Get Your Recipe</a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="{{url_for('register')}}">Register</a></li>
-      </ul>
-    </div>
-  </nav>
-    </header>
-    <section class="container">
+<body class="bg-image">
+   
+    <section class="container text-center position-of-content">
+       <a class='link-text'href="/"><h1 class="font-color">Get your Recipes</h1></a>
       <div class="row">
-    <form action='{{url_for("login")}}' method='POST' class="col s12">
+    <form action='{{url_for("login")}}' method='POST' class="col s12 text-center bg-form">
+      <h4 class="font-color">Login</h4>
       <div class="row">
-        <div class="input-field col s3">
+        <div class="input-field text-center font-color">
           <i class="material-icons prefix">account_circle</i>
-          <input id="username" name='username' type="text" class="validate">
+          <input id="username" name='username' type="text" class="validate" required>
           <label for="icon_prefix">User Name</label>
+              {% for message in messages %} 
+                     <h5 class="font3">
+                         {{ message }}                                                                
+                     </h5>
+                   {% endfor %}
         </div>
         </div>
         <div class="row">
-        <div class="input-field col s3">
+        <div class="input-field text-center font-color">
           <i class="material-icons prefix">vpn_key</i>
-          <input id="password" name='password' type="tel" class="validate">
-          <label for="icon_telephone">Password</label>
+          <input id="password" name='password' type="password" class="validate" required>
+          <label for="icon_telephone">Password</label> {% for message in messages %} 
+                     <h5 class="font3">
+                         {{ message }}                                                                
+                     </h5>
+                   {% endfor %}
         </div>
       </div>
       <div class="row">
           <div class="col-md-12">
-      <button class="btn waves-effect waves-light" type="submit" name="action">Sign Up
+      <button class="btn btn-bg waves-effect waves-light" type="submit" name="action">Login 
     <i class="material-icons right">exit_to_app</i>
   </button>
   </div>
     </div>
+    <a class="font-color link-text" href="{{url_for('register')}}">Don't you have a account?</a>
     </form>
   </div>
     </section>
