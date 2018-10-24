@@ -13,13 +13,15 @@
 <body class="bg-image">
     
     <section class="container text-center position-of-content">
-      <a class='link-text'href="/"><h1 class="font-color">Get your Recipes</h1></a>
+      <a id='link-text'href="/" style="
+    text-decoration: none;
+    color: white;"><h1 class="font-color">Burger Recipes</h1></a>
     <form action='{{url_for("register")}}' method='POST' class="col s12 text-center bg-form">
       <h4 class="font-color">Register</h4>
       <div class="row">
         <div class="input-field text-center font-color">
           <i class="material-icons prefix">account_circle</i>
-          <input id="username" name='username' type="text" class="validate" required>
+          <input id="username" name='username' type="text" class="validate font-color" required>
           <label for="icon_prefix">User Name</label>
           {% for message in messages %} 
                      <h5 class="font3">
@@ -31,14 +33,14 @@
         <div class="row">
         <div class="input-field text-center font-color">
           <i class="material-icons prefix">email</i>
-          <input id="email" name='email'type="email" class="validate" required>
+          <input id="email" name='email'type="email" class="validate font-color" required>
           <label for="icon_telephone">Email</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field text-center font-color">
           <i class="material-icons prefix">vpn_key</i>
-          <input id="password" name='password'type="password" class="validate" required>
+          <input id="password" name='password'type="password" class="validate font-color" required>
           <label for="icon_telephone">Password</label>
         </div>
       </div>

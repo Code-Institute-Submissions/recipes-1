@@ -1,21 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
 
-<section class="container space">
+<section class="container-fluid">
 <div class="row">
-           <form action='{{url_for("search_recipes",register_id=register._id)}}' method="POST">
+  <div class="col-md-12">
+           <form id="search-box"action='{{url_for("search_recipes",register_id=register._id)}}' method="POST" values="search">
       <div class="row">
         <div>
-          <input id="search" name='search'type="search" class="validate">
+          <input id="search" name='search'type="search" class="validate" placeholder="search your recipe">
         </div>
         </div>
         </form>
         </div>
+        </div>
   <div class="row">
 {% for recipes in recipes %}
 <div class="col-md-4">
-          <a href="{{url_for('show_recipes',recipes_id=recipes._id)}}"><img src="{{recipes.imageURL}}"></img><h4>{{recipes.name}}</h4></a>
-          <a href='{{url_for("edit_recipes",recipes_id=recipes._id,register_id=register._id )}}'class="waves-effect waves-light btn btn_small">Edit</a>
+          <a href="{{url_for('show_recipes',recipes_id=recipes._id,register_id=register._id)}}"><img src="{{recipes.imageURL}}"></img><h4>{{recipes.name}}</h4></a>
+          
       </div>
 
  

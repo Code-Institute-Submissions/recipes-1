@@ -20,8 +20,8 @@
     font-family: 'Libre Baskerville', serif;
     margin-top:15px;
 }
-.nav-wrapper a{
-    text-decoration: none;
+#search-box{
+    margin-left: 1180px;
 }
 .text-center{
     text-align: center;
@@ -42,10 +42,21 @@
 .position-of-content{
     margin-top: 160px;
 }
-.link-text a{
+#link-text a{
     text-decoration: none;
     color: white;
 }
+.flash-color{
+    color:yellow;
+}
 .font-color{
     color:white;
+}
+@media (max-width: 600px) {
+    body {
+        height:100vh;
+    }
+#search-box{
+    margin-left: 180px;
+}
 }

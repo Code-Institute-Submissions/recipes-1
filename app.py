@@ -101,17 +101,24 @@ def insert_recipes():
     
     return redirect('/get_recipe')
 
-@app.route('/show_recipes/<recipes_id>',methods=['POST','GET'])
-def show_recipes(recipes_id):
+@app.route('/show_recipes/<recipes_id>/<register_id>',methods=['POST','GET'])
+def show_recipes(recipes_id,register_id):
     recipes=mongo.db.recipes.find({'_id':ObjectId(recipes_id)})
-    return render_template('show_recipes.html',recipes=recipes, register = mongo.db.register.find_one())
+    return render_template('show_recipes.html',recipes=recipes, register = mongo.db.register.find_one({'_id':ObjectId(register_id)}))
     
 @app.route('/search_recipes/<register_id>', methods=['POST','GET'])
 def search_recipes(register_id):
-    query = { "name": { "$regex": request.form.get('search') } }
-    recipes = mongo.db.recipes.find_one(query)
-    return render_template('search_recipes.html',register = mongo.db.register.find_one({'_id':ObjectId(register_id)}), recipes= recipes )
-
+        
+        print(register)
+        form = request.form.get('search')
+        
+        
+        if mongo.db.recipes.find_one({'name':form}):
+            print(form)
+            return render_template('search_recipes.html',register=mongo.db.register.find_one({'_id':ObjectId(register_id)}), recipes=mongo.db.recipes.find_one({'name':form}))
+        else:
+            flash("sorry to say we don't have that recipe")
+        return render_template('search_recipes.html', register=mongo.db.register.find_one({'_id':ObjectId(register_id)}), recipes=mongo.db.recipes.find_one({'name':form}))
 @app.route('/vote/<recipes_id>', methods=["POST"])
 def upvote(recipes_id):
     mongo.db.recipes.update_one({"_id": ObjectId(recipes_id)}, {"$inc":

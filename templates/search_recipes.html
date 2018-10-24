@@ -14,9 +14,25 @@
   <div class="row">
 
 <div class="col-md-4">
-          <a href="{{url_for('show_recipes',recipes_id=recipes._id)}}"><img src="{{recipes.imageURL}}"></img><h4>{{recipes.name}}</h4></a>
-          <a href='{{url_for("edit_recipes",recipes_id=recipes._id,register_id=register._id )}}'class="waves-effect waves-light btn btn_small">Edit</a>
-      </div>
+         
+          <a href="{{url_for('show_recipes',recipes_id=recipes._id,register_id=register._id)}}"><img src="{{recipes.imageURL}}"></img><h4>{{recipes.name}}</h4></a>
+          </div>
+          
+                    {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="flashes">
+                
+                   {% for message in messages %} 
+                     <h5 class="font3">
+                         {{ message }}                                                                
+                     </h5>
+                   {% endfor %}
+                
+            </div>
+            {% endif %}
+            {% endwith %}
+        
+        
 
  
 </div>

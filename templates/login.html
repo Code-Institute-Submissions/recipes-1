@@ -13,14 +13,14 @@
 <body class="bg-image">
    
     <section class="container text-center position-of-content">
-       <a class='link-text'href="/"><h1 class="font-color">Get your Recipes</h1></a>
+       <a id='link-text'href="/"><h1 class="font-color">Burger Recipes</h1></a>
       <div class="row">
     <form action='{{url_for("login")}}' method='POST' class="col s12 text-center bg-form">
       <h4 class="font-color">Login</h4>
       <div class="row">
         <div class="input-field text-center font-color">
           <i class="material-icons prefix">account_circle</i>
-          <input id="username" name='username' type="text" class="validate" required>
+          <input id="username" name='username' type="text" class="validate font-color" required>
           <label for="icon_prefix">User Name</label>
               {% for message in messages %} 
                      <h5 class="font3">
@@ -32,12 +32,21 @@
         <div class="row">
         <div class="input-field text-center font-color">
           <i class="material-icons prefix">vpn_key</i>
-          <input id="password" name='password' type="password" class="validate" required>
-          <label for="icon_telephone">Password</label> {% for message in messages %} 
-                     <h5 class="font3">
+          <input id="password" name='password' type="password" class="validate font-color" required>
+          <label for="icon_telephone">Password</label> 
+                    {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <div class="flashes">
+                
+                   {% for message in messages %} 
+                     <strong class="flash-color">
                          {{ message }}                                                                
-                     </h5>
+                     </strong>
                    {% endfor %}
+                
+            </div>
+            {% endif %}
+            {% endwith %}
         </div>
       </div>
       <div class="row">
