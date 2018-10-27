@@ -5,13 +5,14 @@ These website have a recipes of different types of burgers and it's easy to acce
 ### UX
 These website for a person who want to try new burgers recipes.They can easily achieve by the instruction I gave on these website for example the timing.
 And also I gave best **Ingredients** and the **method of preparation**.Overall my **Target Audience** are amature chefs and young adult.
+[Wrieframe](https://www.lucidchart.com/invitations/accept/a82d7d7a-2498-4d61-b1f5-f6fac3c6be33)
 
 #### Quick intro about how these website work
  - If user new to these website they have to register first 
  - if already existing user they can straightly login and access the recipes
  - if anything wrong about recipes user can edit that and they can get the credit
 
-### Features
+### Features 
 ### Existing Features
   - Firstly, This website have user login and user registration form. In login form If user enter wrong Password the **Password Incorrect** will be display on bottom of the form.
   - Secondly, If the user liked the recipe or did they actually made that recipe they can show us with like button.
@@ -47,9 +48,11 @@ This project was deployed on Heroku
  - ps:scale web=1
  - Push to Heroku --> $ git push heroku master
  
-*Procfile will help to declares types -> web
+* Procfile will help to declares types -> web
+ [Website](https://get-recipes.herokuapp.com/)
 
 ##### Config Vars --> IP = 0.0.0.0, PORT = 5000
+
 ## Credits
 ### Media 
 The background images used in this site were obtained from [PxHere](https://pxhere.com/)
