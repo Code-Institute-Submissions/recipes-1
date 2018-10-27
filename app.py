@@ -3,6 +3,7 @@ import os
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
 from flask_paginate import Pagination, get_page_args
+#import numpy as np
 
 
 app = Flask(__name__)
@@ -58,7 +59,7 @@ def edit_recipes(recipes_id,register_id):
     recipes=mongo.db.recipes.find_one({'_id':ObjectId(recipes_id)})
     return render_template('edit_recipes.html',recipes=recipes,register = mongo.db.register.find_one({'_id':ObjectId(register_id)}))
     
-@app.route('/update_recipes/<recipes_id>',methods=['POST'])
+@app.route('/update_recipes/<recipes_id>',methods=['POST','GET'])
 def update_recipes(recipes_id):
     recipes=mongo.db.recipes
     recipes.update({'_id':ObjectId(recipes_id)},{"name":request.form.get('name'),
@@ -69,7 +70,8 @@ def update_recipes(recipes_id):
                     "preparation":request.form.get('preparation'),
                     "cooking":request.form.get('cooking')
     } )
-    return redirect(url_for('get_recipe'))
+    login_user = mongo.db.register.find_one({'username':ObjectId(recipes_id)})
+    return redirect(url_for('show_recipes', recipes_id=recipes_id, register_id=register_id))
     
 @app.route('/edit_register/<register_id>', methods=['POST','GET'])
 def edit_register(register_id):
@@ -82,7 +84,7 @@ def update_register(register_id):
     register.update({'_id':ObjectId(register_id)},{"username":request.form.get('username'),
                "email":request.form.get('email'),
                "password":request.form.get('password')})
-    return redirect('login',)
+    return redirect('login')
     
 @app.route('/get_recipe/<register_id>',methods=['POST','GET'])
 def get_recipe(register_id):
@@ -133,6 +135,10 @@ def upvote(recipes_id):
                                                                {'votes': 1}})
         
     return redirect(url_for('show_recipes', recipes_id=recipes_id))
+    
+recipes=mongo.db.recipes.find_one({'name':'Grilled chicken burgers'})
+register=mongo.db.register.find_one({'username':'Ram'})
+
 if __name__ == "__main__":
     app.run(host=os.getenv('IP'),
         port= int(  os.getenv('PORT')),

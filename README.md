@@ -38,7 +38,9 @@ In this section, I  mention all of the languages, frameworks, libraries, and any
       * I used **Mongodb** to secure and store my website users details and recipes.
 
 ### Testing 
-
+Manual testing to confirm that the recipes was being passed to the page.
+   I did some testing for check the register form is working.
+   
 
 ### Deployment 
 This project was deployed on Heroku 
