@@ -1,5 +1,5 @@
 .space{
-    margin-top: 45px;
+    margin-top: 10px;
 }
 .border {
     border: 5px solid black;
@@ -46,12 +46,37 @@
     text-decoration: none;
     color: white;
 }
+.image{
+    width:300px;
+    height:200px;
+}
+.title-text{
+    color:black;
+    text-decoration:none;
+}
 .flash-color{
     color:yellow;
 }
 .font-color{
     color:white;
 }
+/* pagination css file */
+.pagination-page-info {
+    padding: .6em;
+    padding-left: 0;
+    width: 40em;
+    margin: .5em;
+    margin-left: 0;
+    font-size: 12px;
+}
+.pagination-page-info b {
+    color: black;
+    background: #6aa6ed;
+    padding-left: 2px;
+    padding: .1em .25em;
+    font-size: 150%;
+}
+/* mobile view  */
 @media (max-width: 600px) {
     body {
         height:100vh;

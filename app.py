@@ -2,6 +2,8 @@ from flask import Flask, render_template, request, url_for, redirect, flash, ses
 import os
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId 
+from flask_paginate import Pagination, get_page_args
+
 
 app = Flask(__name__)
 app.config['MONGO_DBNAME']='get-recipes'
@@ -9,6 +11,12 @@ app.config['MONGO_URI']='mongodb://admin:Kavitha2$@ds163730.mlab.com:63730/get-r
 app.secret_key = 'some_secret'
 
 mongo = PyMongo(app)
+
+users = list(range(100))
+
+
+def get_users(offset=0, per_page=10):
+    return users[offset: offset + per_page]
 
 @app.route('/')
 def index():
@@ -20,7 +28,7 @@ def register():
         register = mongo.db.register
         register.insert_one(request.form.to_dict())
         print(register)
-        return redirect('/get_recipe','register_id=register._id')
+        return redirect(url_for('get_recipe',register_id=register['_id']))
     return render_template('register.html')
 
 @app.route('/login', methods=["GET","POST"])
@@ -85,8 +93,8 @@ def add_recipes(register_id):
     print(register)
     return render_template('add_recipes.html',recipes=mongo.db.recipes.find(), register = mongo.db.register.find_one({'_id':ObjectId(register_id)}))
     
-@app.route('/insert_recipes', methods=["POST"])
-def insert_recipes():
+@app.route('/insert_recipes/<register_id>', methods=["POST"])
+def insert_recipes(register_id):
     recipes = mongo.db.recipes
     recipes_doc = {"name":request.form.get('name'),
                     "ingredients":request.form.get('ingredients'),
@@ -98,8 +106,8 @@ def insert_recipes():
     }  
     recipes.insert_one(recipes_doc)
     print(recipes)
-    
-    return redirect('/get_recipe')
+    register = mongo.db.register.find_one({'_id':ObjectId(register_id)})
+    return redirect(url_for('get_recipe',register_id=register['_id']))
 
 @app.route('/show_recipes/<recipes_id>/<register_id>',methods=['POST','GET'])
 def show_recipes(recipes_id,register_id):
@@ -111,7 +119,7 @@ def search_recipes(register_id):
         
         print(register)
         form = request.form.get('search')
-        
+                
         
         if mongo.db.recipes.find_one({'name':form}):
             print(form)

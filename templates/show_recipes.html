@@ -2,10 +2,14 @@
 {% block content %}
 <section class="container-fluid space">
     {% for recipes in recipes %}
+    <div class="row">
+            <div id='search-box' class="col-md-12">
+             <a href='{{url_for("edit_recipes",recipes_id=recipes._id,register_id=register._id )}}'class="btn waves-effect waves-light  btn_small">Edit</a>
+        </div>
+        </div>
     <div class="row bg">
-        
     <div class="col-md-3">
-        <img src="{{recipes.imageURL}}"></img>
+        <img class="image"src="{{recipes.imageURL}}"></img>
     </div>
     
     <div class="col-md-8">
@@ -18,8 +22,8 @@
         </div>
         <div>
             <i class="material-icons prefix">alarm</i>
-    preparation: <strong>{{recipes.preparation}}</strong></div>
-        <div>&nbsp; &nbsp; &nbsp; &nbsp;Cooking: <strong>{{recipes.cooking}}</strong></div>
+    preparation: <strong>{{recipes.preparation}} mins</strong></div>
+        <div>&nbsp; &nbsp; &nbsp; &nbsp;Cooking: <strong>{{recipes.cooking}} mins</strong></div>
            <div>
               <i class="material-icons prefix">rate_review</i> 
              Credit To: <strong>{{recipes.creditTo}}</strong>
