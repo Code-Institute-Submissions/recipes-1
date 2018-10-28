@@ -3,7 +3,7 @@ import os
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from operator import itemgetter
-from flask_paginate import Pagination, get_page_parameter, get_page_args
+
 
 
 """
@@ -96,25 +96,13 @@ def update_register(register_id):
                "email":request.form.get('email'),
                "password":request.form.get('password')})
     return redirect('login')
-def paginate_setup(records):
-    '''
-    Using prebuilt flask_paginate extension to generate pagination for the recipe listing
-    pages Jinja Looping is then used within the listing template recipes.html to determine
-    recipes to be displayed for each page
-    '''
-    global page, per_page, offset, pagination
-    page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
-    page=request.args.get(get_page_parameter(), type=int, default=1)
-    pagination = Pagination(page=page, per_page=per_page,
-                            total=records.values().count(recipes),
-                            record_name='recipes',
-                            format_total=True, format_number=True)
+
 
 @app.route('/get_recipe/<register_id>',methods=['POST','GET'])
 def get_recipe(register_id):
     register = mongo.db.register.find_one({'_id':ObjectId(register_id)})
-    paginate_setup(recipes)
-    return render_template('get_recipe.html',recipes=mongo.db.recipes.find(), register=register,pagination=pagination, page=page, per_page=per_page)
+    
+    return render_template('get_recipe.html',recipes=mongo.db.recipes.find(), register=register)
 
 @app.route('/add_recipes/<register_id>',methods=['POST','GET'])
 def add_recipes(register_id):
