@@ -13,7 +13,9 @@
 <body class="bg-image">
    
     <section class="container text-center position-of-content">
-       <a id='link-text'href="/"><h1 class="font-color">Burger Recipes</h1></a>
+       <a style="
+    text-decoration: none;
+    color: white;" id='link-text'href="/"><h1 class="font-color">Burger Recipes</h1></a>
       <div class="row">
     <form action='{{url_for("login")}}' method='POST' class="col s12 text-center bg-form">
       <h4 class="font-color">Login</h4>
@@ -56,7 +58,9 @@
   </button>
   </div>
     </div>
-    <a class="font-color link-text" href="{{url_for('register')}}">Don't you have a account?</a>
+    <a style="
+    text-decoration: none;
+    color: white;"class="font-color link-text" href="{{url_for('register')}}">Don't you have a account?</a>
     </form>
   </div>
     </section>

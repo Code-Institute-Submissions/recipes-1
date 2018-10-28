@@ -39,7 +39,9 @@ In this section, I  mention all of the languages, frameworks, libraries, and any
 
 ### Testing 
 Manual testing to confirm that the recipes was being passed to the page.
-   I did some testing for check the register form is working.
+   I did some testing for check the register form is working[Test File](https://github.com/Ramanathan03/recipes/blob/master/test_app.py).
+##### Different screen sizes:
+   I used  **Chrome development tool** to testing my website responsible  in smaller screen and in large screen.
    
 
 ### Deployment 

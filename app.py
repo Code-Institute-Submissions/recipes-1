@@ -1,37 +1,45 @@
 from flask import Flask, render_template, request, url_for, redirect, flash, session
 import os
 from flask_pymongo import PyMongo
-from bson.objectid import ObjectId 
-from flask_paginate import Pagination, get_page_args
-#import numpy as np
+from bson.objectid import ObjectId
+from operator import itemgetter
+from flask_paginate import Pagination, get_page_parameter, get_page_args
 
 
+"""
+Mongodb connection and secert key
+"""
 app = Flask(__name__)
-app.config['MONGO_DBNAME']='get-recipes'
+app.config['MONGO_DBNAME']='get-recipes'                                                     #mongo database name
 app.config['MONGO_URI']='mongodb://admin:Kavitha2$@ds163730.mlab.com:63730/get-recipes'
 app.secret_key = 'some_secret'
 
 mongo = PyMongo(app)
 
-users = list(range(100))
-
-
-def get_users(offset=0, per_page=10):
-    return users[offset: offset + per_page]
-
+"""
+Home page with login form
+"""
 @app.route('/')
 def index():
     return render_template('login.html', register=mongo.db.register.find_one())
 
+"""
+Register form action firsly, method must be post and we going to insert in database by given details from input in register.html 
+and then It will redirect to get recipes
+"""
 @app.route('/register',methods=['POST','GET'])
 def register():
     if request.method == 'POST':
         register = mongo.db.register
         register.insert_one(request.form.to_dict())
         print(register)
-        return redirect(url_for('get_recipe',register_id=register['_id']))
+        return redirect(url_for('get_recipe',register_id=register["_id"]))
     return render_template('register.html')
 
+"""
+Login page action. Firstly, method must be post and we will find the given password and username if it match we will
+redirect to get recipes if not redirect to register and if password only incorrect we will show password is incorrect
+"""
 @app.route('/login', methods=["GET","POST"])
 def login():
     if request.method == 'POST':
@@ -48,13 +56,15 @@ def login():
             return redirect(url_for('register'))
     return render_template('login.html')
             
-            
+"""
+Delete page action If user want to delete their account the information will remove from database
+"""
 @app.route('/delete_register/<register_id>',methods=["GET","POST"] )
 def delete_register(register_id):
     mongo.db.register.remove({'_id':ObjectId(register_id)})
     return redirect(url_for('login'))
 
-@app.route('/edit_recipes/<recipes_id>/<register_id>',methods=['POST','GET'])
+@app.route('/edit_recipes/<recipes_id>/<register_id>',methods=['POST','GET'])           # edit the recipe
 def edit_recipes(recipes_id,register_id):
     recipes=mongo.db.recipes.find_one({'_id':ObjectId(recipes_id)})
     return render_template('edit_recipes.html',recipes=recipes,register = mongo.db.register.find_one({'_id':ObjectId(register_id)}))
@@ -70,14 +80,15 @@ def update_recipes(recipes_id):
                     "preparation":request.form.get('preparation'),
                     "cooking":request.form.get('cooking')
     } )
-    login_user = mongo.db.register.find_one({'username':ObjectId(recipes_id)})
-    return redirect(url_for('show_recipes', recipes_id=recipes_id, register_id=register_id))
+    
+    return redirect(url_for('show_recipes', recipes_id=recipes_id, register_id=register['_id']))
     
 @app.route('/edit_register/<register_id>', methods=['POST','GET'])
 def edit_register(register_id):
     register=mongo.db.register.find_one({'_id':ObjectId(register_id)})
     print(register)
     return render_template('edit_register.html',register=register)
+
 @app.route('/update_register/<register_id>', methods=['GET','POST'])
 def update_register(register_id):
     register = mongo.db.register
@@ -85,11 +96,26 @@ def update_register(register_id):
                "email":request.form.get('email'),
                "password":request.form.get('password')})
     return redirect('login')
-    
+def paginate_setup(records):
+    '''
+    Using prebuilt flask_paginate extension to generate pagination for the recipe listing
+    pages Jinja Looping is then used within the listing template recipes.html to determine
+    recipes to be displayed for each page
+    '''
+    global page, per_page, offset, pagination
+    page, per_page, offset = get_page_args(page_parameter='page', per_page_parameter='per_page')
+    page=request.args.get(get_page_parameter(), type=int, default=1)
+    pagination = Pagination(page=page, per_page=per_page,
+                            total=records.values().count(recipes),
+                            record_name='recipes',
+                            format_total=True, format_number=True)
+
 @app.route('/get_recipe/<register_id>',methods=['POST','GET'])
 def get_recipe(register_id):
     register = mongo.db.register.find_one({'_id':ObjectId(register_id)})
-    return render_template('get_recipe.html',recipes=mongo.db.recipes.find(), register=register)
+    paginate_setup(recipes)
+    return render_template('get_recipe.html',recipes=mongo.db.recipes.find(), register=register,pagination=pagination, page=page, per_page=per_page)
+
 @app.route('/add_recipes/<register_id>',methods=['POST','GET'])
 def add_recipes(register_id):
     print(register)
@@ -119,7 +145,6 @@ def show_recipes(recipes_id,register_id):
 @app.route('/search_recipes/<register_id>', methods=['POST','GET'])
 def search_recipes(register_id):
         
-        print(register)
         form = request.form.get('search')
                 
         
@@ -129,16 +154,24 @@ def search_recipes(register_id):
         else:
             flash("sorry to say we don't have that recipe")
         return render_template('search_recipes.html', register=mongo.db.register.find_one({'_id':ObjectId(register_id)}), recipes=mongo.db.recipes.find_one({'name':form}))
+"""
+Below code is for vote/like 
+"""
 @app.route('/vote/<recipes_id>', methods=["POST"])
 def upvote(recipes_id):
     mongo.db.recipes.update_one({"_id": ObjectId(recipes_id)}, {"$inc":
                                                                {'votes': 1}})
         
-    return redirect(url_for('show_recipes', recipes_id=recipes_id))
+    return redirect(url_for('show_recipes', recipes_id=recipes_id,register_id=register['_id']))
     
+    """
+    Below code is for testing 
+    """
 recipes=mongo.db.recipes.find_one({'name':'Grilled chicken burgers'})
 register=mongo.db.register.find_one({'username':'Ram'})
-
+"""
+host script
+"""
 if __name__ == "__main__":
     app.run(host=os.getenv('IP'),
         port= int(  os.getenv('PORT')),

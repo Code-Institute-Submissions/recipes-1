@@ -17,7 +17,9 @@
 
 <div class="col-md-12 text-center">
           
-          <a href="{{url_for('show_recipes',recipes_id=recipes._id,register_id=register._id)}}"><img src="{{recipes.imageURL}}"></img><h4>{{recipes.name}}</h4></a>
+          <a style="
+    text-decoration: none;
+    color: Black;"href="{{url_for('show_recipes',recipes_id=recipes._id,register_id=register._id)}}"><img class='image' src="{{recipes.imageURL}}"></img><h4>{{recipes.name}}</h4></a>
           
           </div>
           <div class="text-center ">

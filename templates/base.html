@@ -14,15 +14,25 @@
     <header>
         <nav>
     <div class="nav-wrapper">
-      <a href="{{url_for('get_recipe',register_id=register._id)}}" class="brand-logo">Burger Recipes</a>
+      <a style="
+    text-decoration: none;
+    color: white;" href="{{url_for('get_recipe',register_id=register._id)}}" class="brand-logo">Burger Recipes</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a href="{{url_for('add_recipes',register_id=register._id)}}">Add Recipe</a></li>
-        <li><a href="{{url_for('edit_register',register_id=register._id)}}">{{register.username}}</a></li>
+        <li><a style="
+    text-decoration: none;
+    color: white;" href="{{url_for('add_recipes',register_id=register._id)}}">Add Recipe</a></li>
+        <li><a style="
+    text-decoration: none;
+    color: white;" href="{{url_for('edit_register',register_id=register._id)}}">{{register.username}}</a></li>
       </ul>
       <ul class="sidenav" id="mobile-demo">
-        <li><a href="{{url_for('edit_register',register_id=register._id)}}">{{register.username}}</a></li>
-    <li><a href="{{url_for('add_recipes',register_id=register._id)}}">Add Recipe</a></li>
+        <li><a style="
+    text-decoration: none;
+    color: white;" href="{{url_for('edit_register',register_id=register._id)}}">{{register.username}}</a></li>
+    <li><a style="
+    text-decoration: none;
+    color: white;" href="{{url_for('add_recipes',register_id=register._id)}}">Add Recipe</a></li>
         
   </ul>
     </div>
