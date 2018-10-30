@@ -3,6 +3,7 @@ import os
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from operator import itemgetter
+import sys
 
 
 
@@ -72,20 +73,22 @@ def edit_recipes(recipes_id,register_id):
     
 @app.route('/update_recipes/<recipes_id>/<register_id>',methods=['GET','POST'])
 def update_recipes(recipes_id,register_id):
-    if request.method == "POST":
-        recipes=mongo.db.recipes
-        update=recipes.update({'_id':ObjectId(recipes_id)},
-        {"name":request.form.get("name"),
-                   "ingredients":request.form.get("ingredients"),
-                    "steps":request.form.get("steps"),
-                    "imageURL":request.form.get("imageURL"),
-                    "creditTo":request.form.get("credit"),
-                    "preparation":request.form.get("preparation"),
-                    "cooking":request.form.get("cooking")})
-        print(update)
-        print(request.form)
-        print(recipes)
-    return redirect(url_for('show_recipes',recipes_id=recipes_id,register_id=register_id))
+    # if request.method == "POST":
+    recipes=mongo.db.recipes
+    recipes.update({'_id':ObjectId(recipes_id)},  
+    {"name":request.form.get("name"),
+               "ingredients":request.form.get("ingredients"),
+                "steps":request.form.get("steps"),
+                "imageURL":request.form.get("imageURL"),
+                "creditTo":request.form.get("credit"),
+                "preparation":request.form.get("preparation"),
+                "cooking":request.form.get("cooking")})
+    print(recipes.id)
+    print(request.form)
+    print(recipes)
+    sys.exit('error')
+    return redirect(url_for('login'))
+    #return redirect(url_for('show_recipes', recipes_id=recipes_id,register_id=register_id))
     
 @app.route('/edit_register/<register_id>', methods=['POST','GET'])
 def edit_register(register_id):
@@ -131,7 +134,7 @@ def insert_recipes(register_id):
 
 @app.route('/show_recipes/<recipes_id>/<register_id>',methods=['POST','GET'])
 def show_recipes(recipes_id,register_id):
-    recipes=mongo.db.recipes.find({'_id':ObjectId(recipes_id)})
+    recipes=mongo.db.recipes.find_one({'_id':ObjectId(recipes_id)})
     register = mongo.db.register.find_one({'_id':ObjectId(register_id)})
     return render_template('show_recipes.html',recipes=recipes,register=register )
     

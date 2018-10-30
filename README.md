@@ -40,9 +40,22 @@ In this section, I  mention all of the languages, frameworks, libraries, and any
 ### Testing 
 Manual testing to confirm that the recipes was being passed to the page.
    I did some testing for check the register form is working[Test File](https://github.com/Ramanathan03/recipes/blob/master/test_app.py).
+
+Another way I tested my website act like a user to find functionality working
+| Functional      | Expected Output Y/N          | Pass Y/N| Explaination of the Functionality 
+| ------------- |:-------------:| -----:|---:|
+|Registration|Yes|Yes|Registration form is simple like other register form If user new to website they have to register their detail|
+|Login|Yes|Yes|If user already have account in these website they can accrss straight away with login form.|
+|Add recipe|Yes|Yes|If user know new recipe that doesn't exists in these website user can add it via add recipe|
+|edit recipe|Yes|Yes|If anything wrong about recipe user can edit that|
+|Edit register|Yes|Yes|If user want to update their details they can do it here|
+|Like|Yes|Yes|If user made it that recipe or they love the recipe user can show us with like button|
+|Delete Account|Yes|Yes|If user don't want to be longer here they can delete their account|
 ##### Different screen sizes:
    I used  **Chrome development tool** to testing my website responsible  in smaller screen and in large screen.
    
+   - The website is quite responsive and works best on both large middle and small screen.
+   - The look and feel remains the same in different sizes
 
 ### Deployment 
 This project was deployed on Heroku 

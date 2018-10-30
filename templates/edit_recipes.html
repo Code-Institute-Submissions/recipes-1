@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
+<section class="container">
 <h1>Edit Recipes</h1>
 <div class="row">
-    <form action='{{url_for("update_recipes",recipes_id=recipes._id,register_id=register._id)}}' methods="POST" class="col s12">
+    <form action='{{url_for("update_recipes", recipes_id=recipes._id, register_id=register._id)}}' methods="POST" class="col s12">
       <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix">account_circle</i>
@@ -62,5 +63,5 @@
     </div>
     </form> 
   </div>
-  
+  </section>
 {% endblock %}
