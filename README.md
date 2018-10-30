@@ -42,6 +42,8 @@ Manual testing to confirm that the recipes was being passed to the page.
    I did some testing for check the register form is working[Test File](https://github.com/Ramanathan03/recipes/blob/master/test_app.py).
 
 Another way I tested my website act like a user to find functionality working
+
+
 | Functional      | Expected Output Y/N          | Pass Y/N| Explaination of the Functionality 
 | ------------- |:-------------:| -----:|---:|
 |Registration|Yes|Yes|Registration form is simple like other register form If user new to website they have to register their detail|
