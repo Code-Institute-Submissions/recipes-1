@@ -74,7 +74,7 @@ def edit_recipes(recipes_id,register_id):
 def update_recipes(recipes_id,register_id):
     if request.method == "POST":
         recipes=mongo.db.recipes
-        update=recipes.update_one({'_id':ObjectId(recipes_id)},
+        update=recipes.update({'_id':ObjectId(recipes_id)},
         {"name":request.form.get("name"),
                    "ingredients":request.form.get("ingredients"),
                     "steps":request.form.get("steps"),
@@ -85,7 +85,6 @@ def update_recipes(recipes_id,register_id):
         print(update)
         print(request.form)
         print(recipes)
-        update.UpdateResult
     return redirect(url_for('show_recipes',recipes_id=recipes_id,register_id=register_id))
     
 @app.route('/edit_register/<register_id>', methods=['POST','GET'])
