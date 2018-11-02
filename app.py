@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, url_for, redirect, flash, session
-import os
+import os,itertools
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from operator import itemgetter
@@ -141,16 +141,14 @@ def show_recipes(recipes_id,register_id):
     
 @app.route('/search_recipes/<register_id>', methods=['POST','GET'])
 def search_recipes(register_id):
-        
-        form = request.form.get('search')
-                
-        
-        if mongo.db.recipes.find_one({'name':form}):
-            print(form)
-            return render_template('search_recipes.html',register=mongo.db.register.find_one({'_id':ObjectId(register_id)}), recipes=mongo.db.recipes.find_one({'name':form}))
-        else:
+    if request.method == "POST":
+        recipes = list(mongo.db.recipes.find({"$text": {"$search": request.form.get('search')}}))
+        print(recipes,request.form.get('search'))
+        if recipes.count() == 0:
             flash("sorry to say we don't have that recipe")
-        return render_template('search_recipes.html', register=mongo.db.register.find_one({'_id':ObjectId(register_id)}), recipes=mongo.db.recipes.find_one({'name':form}))
+            return render_template('search_recipes.html', register=mongo.db.register.find_one({'_id':ObjectId(register_id)}), recipes=recipes)
+    return render_template('search_recipes.html', register=mongo.db.register.find_one({'_id':ObjectId(register_id)}), recipes=recipes)        
+    
 """
 Below code is for vote/like 
 """
