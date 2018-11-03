@@ -142,18 +142,19 @@ def show_recipes(recipes_id,register_id):
 @app.route('/search_recipes/<register_id>', methods=['POST','GET'])
 def search_recipes(register_id):
     if request.method == "POST":
-        recipes = list(mongo.db.recipes.find({"$text": {"$search": request.form.get('search')}}))
+        recipes=list(mongo.db.recipes.find({"name": {"$regex":request.form['search']}}))
         print(recipes,request.form.get('search'))
-        if recipes.count() == 0:
-            flash("sorry to say we don't have that recipe")
+        if recipes:
             return render_template('search_recipes.html', register=mongo.db.register.find_one({'_id':ObjectId(register_id)}), recipes=recipes)
+        else:
+            return render_template('404.html', register=mongo.db.register.find_one({'_id':ObjectId(register_id)}), recipes=recipes,message='No recipes found')
     return render_template('search_recipes.html', register=mongo.db.register.find_one({'_id':ObjectId(register_id)}), recipes=recipes)        
     
 """
 Below code is for vote/like 
 """
 @app.route('/vote/<recipes_id>', methods=["POST"])
-def upvote(recipes_id):
+def upvote(recipes_id): 
     mongo.db.recipes.update_one({"_id": ObjectId(recipes_id)}, {"$inc":
                                                                {'votes': 1}})
         

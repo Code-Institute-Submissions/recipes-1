@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="container-fluid">
+  <div class="col-md-12">
+      
+           <form id="search-box"action='{{url_for("search_recipes",register_id=register._id)}}' method="POST" >
+      <div class="row">
+        <div>
+          <input id="search" name='search'type="search" class="validate" placeholder="search your recipe">
+        </div>
+        </div>
+        </form>
+        
+        </div>
+<div class="row">
+    <div class="col-md-12 text-center">
+  <h3 class="text-center space">sorry to say we don't have that recipe</h3>
+  <br>
+  <h5 class="text-center space">{{message|safe}}</h5>
+</div>
+</div>
+</section>
+{% endblock %}
