@@ -157,7 +157,6 @@ Below code is for vote/like
 def upvote(recipes_id): 
     mongo.db.recipes.update_one({"_id": ObjectId(recipes_id)}, {"$inc":
                                                                {'votes': 1}})
-        
     return redirect(url_for('show_recipes', recipes_id=recipes_id,register_id=register['_id']))
     
     """
