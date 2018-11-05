@@ -35,7 +35,7 @@
     <form action="{{url_for('delete_register',register_id=register._id)}}" method='POST' class="col s12">
       <div class="row">
           <div class="col-md-12">
-      <button class="btn btn-danger waves-effect waves-light" id="delete" type="submit" name="action">Delete Register
+      <button onclick="myFunction()" class="btn btn-danger waves-effect waves-light" id="delete" type="submit" name="action">Delete Register
     <i class="material-icons right">delete_forever</i>
   </button>
   </div>
@@ -43,9 +43,13 @@
     </form>
   </div>
   </section>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script>
       $(document).ready(function() {
-      
+      $( "#delete" ).click(function() {
+       alert( " I am Afraid Do you want to delete your account" );
+});
   });
     </script>
 {% endblock %}

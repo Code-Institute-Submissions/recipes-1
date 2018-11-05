@@ -1,17 +1,18 @@
 {% extends "base.html" %}
 {% block content %}
 
-<section class="container-fluid">
-    
-<div class="row">
+<section class="container">
+ <div class="row">
   <div class="col-md-12">
       
-           <form id="search-box"action='{{url_for("search_recipes",register_id=register._id)}}' method="POST" >
-      <div class="row">
+           <form action='{{url_for("search_recipes",register_id=register._id)}}' method="POST" style="
+    float: right;
+">
+      
         <div>
           <input id="search" name='search'type="search" class="validate" placeholder="search your recipe">
         </div>
-        </div>
+        
         </form>
         
         </div>
@@ -20,15 +21,15 @@
   <div class="row">
       
       
-          <div class="col-md-12 text-center">
+          <div class="col s12 text-center">
           
           <a style="
     text-decoration: none;
-    color: Black;"href="{{url_for('show_recipes',recipes_id=recipes._id,register_id=register._id)}}"><img class='image' src="{{recipes.imageURL}}"></img>
+    color: Black;"href="{{url_for('show_recipes',recipes_id=recipes._id,register_id=register._id)}}"><img class='image text-center' src="{{recipes.imageURL}}"></img>
     <h4>{{recipes.name}}</h4>
     </a>
-          
           </div>
+          
           {% endfor %}
          
  
