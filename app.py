@@ -126,7 +126,8 @@ def insert_recipes(register_id):
                     "imageURL":request.form.get('imageURL'),
                     "creditTo":request.form.get('credit'),
                     "preparation":request.form.get('preparation'),
-                    "cooking":request.form.get('cooking')
+                    "cooking":request.form.get('cooking'),
+                    "creditTo":request.form.get('credit')
     }  
     recipes.insert_one(recipes_doc)
     print(recipes)
