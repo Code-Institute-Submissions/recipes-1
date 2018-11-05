@@ -5,12 +5,12 @@ These website have a recipes of different types of burgers and it's easy to acce
 ### UX
 These website for a person who want to try new burgers recipes.They can easily achieve by the instruction I gave on these website for example the timing.
 And also I gave best **Ingredients** and the **method of preparation**.Overall my **Target Audience** are amature chefs and young adult.
-[Wrieframe](https://www.lucidchart.com/invitations/accept/a82d7d7a-2498-4d61-b1f5-f6fac3c6be33)
+[Wireframe](https://www.lucidchart.com/invitations/accept/a82d7d7a-2498-4d61-b1f5-f6fac3c6be33)
 
 #### Quick intro about how these website work
  - If user new to these website they have to register first 
  - if already existing user they can straightly login and access the recipes
- - user can edit and delete recipes only when they created their
+ - user can edit and delete recipes only when they created that recipe these will be only recognize credit to and username is same
 
 ### Features 
 ### Existing Features
