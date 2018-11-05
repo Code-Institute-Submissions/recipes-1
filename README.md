@@ -10,7 +10,7 @@ And also I gave best **Ingredients** and the **method of preparation**.Overall m
 #### Quick intro about how these website work
  - If user new to these website they have to register first 
  - if already existing user they can straightly login and access the recipes
- - if anything wrong about recipes user can edit that and they can get the credit
+ - user can edit and delete recipes only when they created their
 
 ### Features 
 ### Existing Features

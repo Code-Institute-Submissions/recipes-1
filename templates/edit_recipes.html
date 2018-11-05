@@ -2,6 +2,8 @@
 {% block content %}
 <section class="container">
   <h1>Edit Recipe</h1>
+  
+  {% if recipes.creditTo == register.username %}
  <form action='{{url_for("update_recipes", recipes_id=recipes._id, register_id=register._id)}}' method='POST' class="col s12">
       <div class="row">
         <div class="input-field col s6">
@@ -56,6 +58,13 @@
   </div>
     </div>
     </form>
+    {% else %}
+    <div class="row">
+      <div class="col-md-12 text-center space">
+    <h3>Sorry to say you don't have that rights to edit these recipes</h3><br>
+    </div></div>
+    {% endif %}
+    
   
 </section>
 {% endblock %}

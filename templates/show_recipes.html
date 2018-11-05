@@ -1,14 +1,28 @@
 {% extends "base.html" %}
 {% block content %}
 <section class="container-fluid space">
-    
+    {% if recipes.creditTo == register.username %}
     <div class="row">
             <div id='search-box' class="col-md-12">
              <a style="
     text-decoration: none;
     color: white;"href='{{url_for("edit_recipes",recipes_id=recipes._id,register_id=register._id)}}'class="btn waves-effect waves-light  btn_small">Edit</a>
+    </div>
         </div>
+        
+     <div class="row">
+            <div id='search-box' class="col-md-12">
+    <form  action="{{url_for('delete_recipe',register_id=register._id,recipes_id=recipes._id)}}" method='POST'>
+      
+      <button  class="btn btn-danger waves-effect waves-light" id="delete" type="submit" name="action">Delete
+   
+  </button>
+  
+    </form>
+    </div>
         </div>
+    {% endif %}
+        
     <div class="row bg">
     <div class="col-md-3">
         <img class="image"src="{{recipes.imageURL}}"></img>
@@ -19,7 +33,7 @@
         <h2 class="font">{{recipes.name}}</h2>
         </div>
         <div>
-            <form class="material-icons" action="{{ url_for('upvote', recipes_id=recipes._id)}}" method="POST">
+            <form class="material-icons" action="{{ url_for('upvote', recipes_id=recipes._id,register_id=register._id)}}" method="POST">
                         <button class="upvotesbtn upvote-count" name='vote' type="submit"><i>thumb_up</i></button></form> <strong>{{recipes.votes}}</strong>
         </div>
         <div>
@@ -33,10 +47,12 @@
     </div>
      </div>            
      <div class="row">
+         
          <div class="col-lg-4 col-sm-12">
              <h4>Ingredients<i class="material-icons prefix">shopping_basket</i></h4>
              {{recipes.ingredients}}
          </div>
+         
          <div class="col-lg-8 col-sm-12">
              <h4>Method</h4>
              {{recipes.steps}}

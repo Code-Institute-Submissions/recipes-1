@@ -69,8 +69,10 @@ def delete_register(register_id):
 @app.route('/edit_recipes/<recipes_id>/<register_id>',methods=['POST','GET'])           # edit the recipe
 def edit_recipes(recipes_id,register_id):
     recipes=mongo.db.recipes.find_one({'_id':ObjectId(recipes_id)})
-    print(request.form.get('recipe_name'))
-    return render_template('edit_recipes.html',recipes=recipes,register = mongo.db.register.find_one({'_id':ObjectId(register_id)}))
+    register = mongo.db.register.find_one({'_id':ObjectId(register_id)})
+    print(recipes)
+    print(register)
+    return render_template('edit_recipes.html',recipes=recipes,register = register)
     
 @app.route('/update_recipes/<recipes_id>/<register_id>',methods=['GET','POST'])
 def update_recipes(recipes_id,register_id):
@@ -88,12 +90,18 @@ def update_recipes(recipes_id,register_id):
     print(request.form.get('recipe_name'))
     print(update)
     return redirect(url_for('show_recipes', recipes_id=recipes_id,register_id=register_id))
-    
+
+@app.route('/delete_recipe/<register_id>/<recipes_id>',methods=["GET","POST"])
+def delete_recipe(recipes_id,register_id):
+    mongo.db.recipes.remove({'_id':ObjectId(recipes_id)})
+    return redirect(url_for('get_recipe',register_id=register_id))
+
 @app.route('/edit_register/<register_id>', methods=['POST','GET'])
 def edit_register(register_id):
     register=mongo.db.register.find_one({'_id':ObjectId(register_id)})
     print(register)
-    return render_template('edit_register.html',register=register)
+    recipes = mongo.db.recipes.find()
+    return render_template('edit_register.html',register=register,recipes=recipes)
 
 @app.route('/update_register/<register_id>', methods=['GET','POST'])
 def update_register(register_id):
@@ -154,11 +162,11 @@ def search_recipes(register_id):
 """
 Below code is for vote/like 
 """
-@app.route('/vote/<recipes_id>', methods=["POST"])
-def upvote(recipes_id): 
+@app.route('/vote/<recipes_id>/<register_id>', methods=["POST"])
+def upvote(recipes_id,register_id): 
     mongo.db.recipes.update_one({"_id": ObjectId(recipes_id)}, {"$inc":
                                                                {'votes': 1}})
-    return redirect(url_for('show_recipes', recipes_id=recipes_id,register_id=register['_id']))
+    return redirect(url_for('show_recipes', recipes_id=recipes_id,register_id=register_id))
     
     """
     Below code is for testing 
