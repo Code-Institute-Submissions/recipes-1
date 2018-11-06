@@ -51,9 +51,16 @@
       <div class="col-md-12 text-center">
       
      {% if recipes.creditTo == register.username %}
+     {% if recipes.imageURL%}
        <a style="text-decoration: none;color: black;"href="{{url_for('show_recipes',recipes_id=recipes._id,register_id=register._id)}}">
           <img class="image"src="{{recipes.imageURL}}"></img><h4 class="title-text">{{recipes.name}}</h4></a>
-          
+      {% else %}
+      <div class="col-md-12 text-center">
+          <a style="
+    text-decoration: none;
+    color: black;"href="{{url_for('show_recipes',recipes_id=recipes._id,register_id=register._id)}}"><img class="image"src="{{url_for('static', filename='images/no-image.jpg')}}"></img><h4 class="title-text">{{recipes.name}}</h4></a>
+          </div>
+          {% endif %}
       {% endif %}
       
       </div>

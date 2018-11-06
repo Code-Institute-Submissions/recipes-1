@@ -24,9 +24,15 @@
     {% endif %}
         
     <div class="row bg">
+    {% if recipes.imageURL%}
     <div class="col-md-3">
         <img class="image"src="{{recipes.imageURL}}"></img>
     </div>
+    {% else %}
+      <div class="col-md-3">
+    <img class="image"src="{{url_for('static', filename='images/no-image.jpg')}}"></img>
+          </div>
+          {% endif %}
     
     <div class="col-md-8">
         <div>
