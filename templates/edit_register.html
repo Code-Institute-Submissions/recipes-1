@@ -2,56 +2,56 @@
 {% block content %}
 
 <section class="container">
-    <form action='{{url_for("update_register", register_id=register._id)}}' method='POST' class="col s12">
+  <h1 class="text-center">{{register.username}} Profile</h1>
+   <form id="delete_user" onclick="if(confrim('are you sure?');return false" action="{{url_for('delete_register',register_id=register._id)}}" method='POST' class="col s12">
       <div class="row">
-        <div class="input-field col s6">
+          <div class="col-md-12 text-center">
+      <button  class="btn btn-danger waves-effect waves-light text-center float" id="delete" type="submit" name="action">Delete Register
+    <i class="material-icons right">delete_forever</i>
+  </button>
+  </div>
+    </div>
+    <h1 id="demo"></h1>
+    </form>
+    <form action='{{url_for("update_register", register_id=register._id)}}' method='POST' class="col s12 ">
+      <div class="row">
+        <div class="input-field text-center col-md-4">
           <i class="material-icons prefix">account_circle</i>
           <input id="username" name='username'  type="text" value='{{register.username}}' class="validate" placeholder="User Name" !required>
         </div>
         </div>
         <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field text-center col-md-4 ">
           <i class="material-icons prefix">email</i>
           <input id="email" name='email'type="email" value='{{register.email}}' class="validate" placeholder="Email" !required>
         </div>
       </div>
       <div class="row">
-        <div class="input-field col s6">
+        <div class="input-field text-center col-md-4  ">
           <i class="material-icons prefix">vpn_key</i>
           <input id="password" name='password'type="password" value='{{register.password}}' class="validate" placeholder="Password"  !required>
         </div>
       </div>
       <div class="row">
-          <div class="col-md-12">
-      <button class="btn waves-effect waves-light" type="submit" name="action">Update Details
+          <div class="col-md-12 text-center">
+      <button class="btn waves-effect waves-light text-center" type="submit" name="action">Update Details
     <i class="material-icons right">exit_to_app</i>
   </button>
   </div>
     </div>
     </form>
-    <form id="delete_user" onsubmit="myFunction()" action="{{url_for('delete_register',register_id=register._id)}}" method='POST' class="col s12">
-      <div class="row">
-          <div class="col-md-12">
-      <button  class="btn btn-danger waves-effect waves-light" id="delete" type="submit" name="action">Delete Register
-    <i class="material-icons right">delete_forever</i>
-  </button>
-  </div>
-    </div>
-    </form>
+    
     <div class="row">
       <div class="col-md-12 text-center">
-        <h4>My Own Recipes</h4>
+        <h4>{{register.username}} Own Recipes</h4>
       </div>
     </div>
     
-    
-    
     <div class="row">
-      {% for recipes in recipes %}
       <div class="col-md-12 text-center">
-      
-     {% if recipes.creditTo == register.username %}
-     {% if recipes.imageURL%}
+      {% for recipes in recipes %}
+     {% if recipes%}
+     {% if recipes.imageURL %}
        <a style="text-decoration: none;color: black;"href="{{url_for('show_recipes',recipes_id=recipes._id,register_id=register._id)}}">
           <img class="image"src="{{recipes.imageURL}}"></img><h4 class="title-text">{{recipes.name}}</h4></a>
       {% else %}
@@ -61,21 +61,18 @@
     color: black;"href="{{url_for('show_recipes',recipes_id=recipes._id,register_id=register._id)}}"><img class="image"src="{{url_for('static', filename='images/no-image.jpg')}}"></img><h4 class="title-text">{{recipes.name}}</h4></a>
           </div>
           {% endif %}
-      {% endif %}
+          {% endif %}
+          {% else %}
+       <h5>{{ register.username}} Currently you don't have any recipe <a style="text-decoration: none;color: black;" href="{{url_for('add_recipes',register_id=register._id)}}">Add One</a>   </h5>
       
-      </div>
       {% endfor %}
+      </div>
+     
     </div>
   
   
   </section>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script>
-      $(document).ready(function() {
-      $( "#delete_user" ).submit(function() {
-       confirm("Are you sure you want to delete the account");
-});
-  });
-    </script>
+ 
 {% endblock %}

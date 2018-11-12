@@ -63,6 +63,7 @@ Delete page action If user want to delete their account the information will rem
 """
 @app.route('/delete_register/<register_id>',methods=["GET","POST"] )
 def delete_register(register_id):
+
     mongo.db.register.remove({'_id':ObjectId(register_id)})
     return redirect(url_for('login'))
 
@@ -100,7 +101,8 @@ def delete_recipe(recipes_id,register_id):
 def edit_register(register_id):
     register=mongo.db.register.find_one({'_id':ObjectId(register_id)})
     print(register)
-    recipes = mongo.db.recipes.find()
+    
+    recipes = mongo.db.recipes.find({'creditTo':register['username']})
     return render_template('edit_register.html',register=register,recipes=recipes)
 
 @app.route('/update_register/<register_id>', methods=['GET','POST'])
@@ -148,16 +150,21 @@ def show_recipes(recipes_id,register_id):
     register = mongo.db.register.find_one({'_id':ObjectId(register_id)})
     return render_template('show_recipes.html',recipes=recipes,register=register )
     
+@app.route('/search/<register_id>', methods=['POST','GET'])
+def search(register_id): 
+    return render_template('search.html', register=mongo.db.register.find_one({'_id':ObjectId(register_id)}))
+
+
 @app.route('/search_recipes/<register_id>', methods=['POST','GET'])
 def search_recipes(register_id):
     if request.method == "POST":
         recipes=list(mongo.db.recipes.find({"name": {"$regex":request.form['search']}}))
         print(recipes,request.form.get('search'))
         if recipes:
-            return render_template('search_recipes.html', register=mongo.db.register.find_one({'_id':ObjectId(register_id)}), recipes=recipes)
+            return render_template('search_recipes.html', register=mongo.db.register.find_one({'_id':ObjectId(register_id)}),recipes=recipes)
         else:
             return render_template('404.html', register=mongo.db.register.find_one({'_id':ObjectId(register_id)}), recipes=recipes,message='No recipes found')
-    return render_template('search_recipes.html', register=mongo.db.register.find_one({'_id':ObjectId(register_id)}), recipes=recipes)        
+    return render_template('search.html', register=mongo.db.register.find_one({'_id':ObjectId(register_id)}),recipes=recipes)        
     
 """
 Below code is for vote/like 

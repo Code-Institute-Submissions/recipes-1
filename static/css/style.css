@@ -30,8 +30,26 @@
 .bg-form{
     background:rgba(0, 0, 0, 0.4);
 }
+.nav-color{
+    background-color: #ff6347;
+}
+.body-bg-color{
+    background-color: #ffebcd;
+}
+
+.padding1{
+    padding-right: 40px;
+}
+.float{
+    float:right;
+}
 .bg-image{
     background-image: url('../images/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.bg-slide-image{
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -60,21 +78,11 @@
 .font-color{
     color:white;
 }
-/* pagination css file */
-.pagination-page-info {
-    padding: .6em;
-    padding-left: 0;
-    width: 40em;
-    margin: .5em;
-    margin-left: 0;
-    font-size: 12px;
+.bg4{
+    background-color: white;
 }
-.pagination-page-info b {
-    color: black;
-    background: #6aa6ed;
-    padding-left: 2px;
-    padding: .1em .25em;
-    font-size: 150%;
+.padding3{
+    padding-left: 15px;
 }
 /* mobile view  */
 @media (max-width: 600px) {

@@ -1,33 +1,43 @@
 {% extends "base.html" %}
 {% block content %}
 
-<section class="container-fluid">
-<div class="row">
-  <div class="col-md-12">
-           <form id="search-box"action='{{url_for("search_recipes",register_id=register._id)}}' method="POST" >
-      <div class="row">
-        <div>
-          <input id="search" name='search'type="search" class="validate" placeholder="search your recipe">
+<section class="container">
+
+        <div class="slider space">
+    <ul class="slides">
+      <li>
+        <img class="bg-slide-image" src="{{url_for('static', filename='images/bg-slide1.jpg')}}"> <!-- random image -->
+        <div class="caption left-align">
+          <h1>Welcome to Burger Recipe</h1>
         </div>
+      </li>
+      <li>
+        <img class="bg-slide-image" src="{{url_for('static', filename='images/bg-slides.jpg')}}"> <!-- random image -->
+        <div class="caption left-align">
+          <h1>Where Burger enthusiasts <br>
+          discover new favourites</h1>
         </div>
-        </form>
+      </li>
+      <li>
+        <img class="bg-slide-image" src="{{url_for('static', filename='images/bg-slide3.jpg')}}"> <!-- random image -->
+        <div class="caption left-align">
+          <h1>I always say, <br> Eat clean to stay fit  <br>have a burger to stay sane</h1>
         </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <h2>Welcome! To Burger Recipes</h2>
-          </div>
-        </div>
+      </li>
+      
+    </ul>
+  </div>
   <div class="row">
 {% for recipes in recipes %}
  {% if recipes.imageURL%}
-     <div class="col-md-4">
+     <div class="col-md-6 text-center">
           <a style="
     text-decoration: none;
+    
     color: black;"href="{{url_for('show_recipes',recipes_id=recipes._id,register_id=register._id)}}"><img class="image"src="{{recipes.imageURL}}"></img><h4 class="title-text">{{recipes.name}}</h4></a>
           </div>
           {% else %}
-           <div class="col-md-4">
+           <div class="col-md-6 text-center">
           <a style="
     text-decoration: none;
     color: black;"href="{{url_for('show_recipes',recipes_id=recipes._id,register_id=register._id)}}"><img class="image"src="{{url_for('static', filename='images/no-image.jpg')}}"></img><h4 class="title-text">{{recipes.name}}</h4></a>
@@ -35,5 +45,8 @@
           {% endif %}
 {% endfor %}
 </div>
+
+  
+
 </section>
 {% endblock %}

@@ -10,33 +10,36 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" type="text/css" />
 </head>
-<body>
+<body class="body-bg-color">
     <header>
-        <nav>
+        <nav class="nav-color">
     <div class="nav-wrapper">
       <a style="
     text-decoration: none;
+    padding-left: 80px;
     color: white;" href="{{url_for('get_recipe',register_id=register._id)}}" class="brand-logo">Burger Recipes</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-      <ul id="nav-mobile" class="right hide-on-med-and-down">
-        <li><a style="
-    text-decoration: none;
-    color: white;" href="{{url_for('add_recipes',register_id=register._id)}}">Add Recipe</a></li>
-        <li><a style="
-    text-decoration: none;
-    color: white;" href="{{url_for('edit_register',register_id=register._id)}}">{{register.username}}</a></li>
-    <li><a style="
-    text-decoration: none;
-    color: white;" href="{{url_for('login')}}">LogOut</a></li>
+      <ul id="nav-mobile" class="right hide-on-med-and-down padding1">
+        <li><a style="text-decoration: none;color: white;" href="{{url_for('add_recipes',register_id=register._id)}}">Add Recipe</a></li>
+       <!--  <li>
+                 <form action='{{url_for("search_recipes",register_id=register._id)}}' method="POST" >
+        <div>
+          <input id="search" name='search'type="search" class="validate"  placeholder="search your recipe">
+        </div>
+        </form>
+        </li> !-->
+        <li class="s-icon">
+              <a style="text-decoration: none;color: white;" href="{{url_for('search',register_id=register._id)}}" id="addClass"><i class="material-icons">search</i></a>
+            </li>
+        <!-- <li><a style="text-decoration: none;color: white;" href="{{url_for('search_recipes',register_id=register._id)}}"><i class="material-icons">search</i></a></li> !-->
+        <li><a style="text-decoration: none;color: white;" href="{{url_for('edit_register',register_id=register._id)}}">{{register.username}}</a></li>
+        
+    <li><a style="text-decoration: none; color: white;" href="{{url_for('login')}}">LogOut</a></li>
     
       </ul>
       <ul class="sidenav" id="mobile-demo">
-        <li><a style="
-    text-decoration: none;
-    color: white;" href="{{url_for('edit_register',register_id=register._id)}}">{{register.username}}</a></li>
-    <li><a style="
-    text-decoration: none;
-    color: white;" href="{{url_for('add_recipes',register_id=register._id)}}">Add Recipe</a></li>
+        <li><a style="text-decoration: none;color: white;" href="{{url_for('edit_register',register_id=register._id)}}">{{register.username}}</a></li>
+    <li><a style="text-decoration: none;color: white;" href="{{url_for('add_recipes',register_id=register._id)}}">Add Recipe</a></li>
         
   </ul>
     </div>
@@ -47,11 +50,22 @@
     {% endblock %}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
     <script>
+    
       $(document).ready(function() {
     $('#steps').characterCounter();
     $('.sidenav').sidenav();
+    $('.slider').slider();
+    $("#addClass").click(function () {
+    $('#qnimate').addClass('popup-box-on');
+            });
+          
+    $("#removeClass").click(function () {
+          $('#qnimate').removeClass('popup-box-on');
+            });
   });
+  
     </script>
 </body>
 </html>

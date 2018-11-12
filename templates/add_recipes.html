@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<section class="container">
+<section class="container bg4 space">
 <h1>Add Recipes</h1>
 <div class="row">
     <form action='{{url_for("insert_recipes",register_id=register._id)}}' method="POST"class="col s12">
@@ -21,8 +21,8 @@
       <div class="row">
           <div class="input-field col s6">
           <i class="material-icons prefix">description</i>
-          <textarea name="steps" id="steps" class="materialize-textarea" data-length="2500"  required></textarea>
-          <label for="icon_telephone">Steps</label>
+          <textarea name="steps" id="steps" class="materialize-textarea" data-length="2500" placeholder="Steps"  required></textarea>
+          
         </div>
       </div>
       <div class="row">
