@@ -151,8 +151,8 @@ def show_recipes(recipes_id,register_id):
     step_split = recipes['steps'].split('.')
     for recipe in step_split:
         print(recipe)
-       
-    return render_template('show_recipes.html',recipes=recipes,register=register, recipe=recipe, step_split=step_split )
+    return render_template('show_recipes.html',recipes=recipes,register=register, recipe=recipe, step_split=step_split
+                           )
     
 @app.route('/search/<register_id>', methods=['POST','GET'])
 def search(register_id): 
