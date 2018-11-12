@@ -148,7 +148,11 @@ def insert_recipes(register_id):
 def show_recipes(recipes_id,register_id):
     recipes=mongo.db.recipes.find_one({'_id':ObjectId(recipes_id)})
     register = mongo.db.register.find_one({'_id':ObjectId(register_id)})
-    return render_template('show_recipes.html',recipes=recipes,register=register )
+    step_split = recipes['steps'].split('.')
+    for recipe in step_split:
+        print(recipe)
+       
+    return render_template('show_recipes.html',recipes=recipes,register=register, recipe=recipe, step_split=step_split )
     
 @app.route('/search/<register_id>', methods=['POST','GET'])
 def search(register_id): 
