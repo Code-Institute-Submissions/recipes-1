@@ -63,7 +63,7 @@
           {% endif %}
           {% endif %}
           {% else %}
-       <h5>{{ register.username}} Currently you don't have any recipe <a style="text-decoration: none;color: black;" href="{{url_for('add_recipes',register_id=register._id)}}">Add One</a>   </h5>
+       <h5>{{ register.username}} Currently you don't have any own recipe.<a style="text-decoration: none;color: black;" href="{{url_for('add_recipes',register_id=register._id)}}">Add One</a>   </h5>
       
       {% endfor %}
       </div>
