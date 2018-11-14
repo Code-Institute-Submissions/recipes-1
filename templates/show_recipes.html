@@ -4,17 +4,15 @@
     {% if recipes.creditTo == register.username %}
     <div class="row">
             <div  class="col-md-12">
-             <a style="
-    text-decoration: none;
-    color: white;"href='{{url_for("edit_recipes",recipes_id=recipes._id,register_id=register._id)}}'class="btn waves-effect waves-light float btn_small">Edit</a>
+             <a style="text-decoration: none; color: white;"href='{{url_for("edit_recipes",recipes_id=recipes._id,register_id=register._id)}}'class="btn waves-effect waves-light float btn_small">Edit</a>
     </div>
         </div>
         
      <div class="row">
             <div  class="col-md-12">
-    <form  action="{{url_for('delete_recipe',register_id=register._id,recipes_id=recipes._id)}}" class="float" method='POST'>
+    <form onsubmit='return confirm("Are you sure you want to delete your recipe?");' action="{{url_for('delete_recipe',register_id=register._id,recipes_id=recipes._id)}}" class="float" method='POST'>
       
-      <button  class="btn btn-danger waves-effect waves-light" id="delete" type="submit" name="action">Delete
+      <button  class="btn btn-danger waves-effect waves-light btn_small" id="delete" type="submit" name="action">Delete
    
   </button>
   
@@ -70,6 +68,12 @@
      </div>
     
 </section>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      document.getElementsById('#delete_user').onsubmit = function() {
+    return confirm('Are you sure?');
+};
+    </script>
 
 {% endblock %}
