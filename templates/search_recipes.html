@@ -13,10 +13,10 @@
             </form>
             </div>
     {% for recipes in recipes %}
-    <div class="row">
+    <div class="row space">
         <div class="col s12 text-center">
             <a style="text-decoration: none; color: Black;" href="{{url_for('show_recipes',recipes_id=recipes._id,register_id=register._id)}}">
-                <img class='image text-center' src="{{recipes.imageURL}}">
+                <img class='image text-center space' src="{{recipes.imageURL}}">
                 <h4>{{recipes.name}}</h4>
             </a>
         </div>

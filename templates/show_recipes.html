@@ -24,30 +24,43 @@
     <div class="row bg">
     {% if recipes.imageURL%}
     <div class="col-md-3">
-        <img class="image"src="{{recipes.imageURL}}"></img>
+        <img class="Image3"src="{{recipes.imageURL}}"></img>
     </div>
     {% else %}
       <div class="col-md-3">
-    <img class="image"src="{{url_for('static', filename='images/no-image.jpg')}}"></img>
+    <img class="Image3"src="{{url_for('static', filename='images/no-image.jpg')}}"></img>
           </div>
           {% endif %}
     
     <div class="col-md-8">
-        <div>
-        <h2 class="font">{{recipes.name}}</h2>
+        <div class="recipe-title">
+        <h2 class="recipe-title-h2">{{recipes.name}}</h2>
         </div>
-        <div>
+        
+        <div class="recipe-detail">
+        
+        <div class="recipe-detail-padding">
+            <i class="material-icons prefix">alarm</i>
+    preparation: <strong>{{recipes.preparation}} mins</strong>
+    </div>
+   <br>
+        <div class="recipe-detail-padding">
+            
+            <i class="material-icons prefix">alarm</i>
+            Cooking: <strong>{{recipes.cooking}} mins</strong>
+            </div>
+            <br>
+           
+           <div class="recipe-detail-padding">
+              <i class="material-icons prefix">rate_review</i> 
+             Credit To: <strong>{{recipes.creditTo}}</strong>
+           </div>  
+           <br>
+           <div class="recipe-detail-padding">
             <form class="material-icons" action="{{ url_for('upvote', recipes_id=recipes._id,register_id=register._id)}}" method="POST">
                         <button class="upvotesbtn upvote-count" name='vote' type="submit"><i>thumb_up</i></button></form> <strong>{{recipes.votes}}</strong>
         </div>
-        <div>
-            <i class="material-icons prefix">alarm</i>
-    preparation: <strong>{{recipes.preparation}} mins</strong></div>
-        <div>&nbsp; &nbsp; &nbsp; &nbsp;Cooking: <strong>{{recipes.cooking}} mins</strong></div>
-           <div>
-              <i class="material-icons prefix">rate_review</i> 
-             Credit To: <strong>{{recipes.creditTo}}</strong>
-           </div>               
+    </div>
     </div>
      </div>            
      <div class="row">
@@ -59,10 +72,11 @@
          </div>
          
          <div class="col-lg-8 col-sm-12">
-             <h4 class="text-center">Method</h4>
+             <h4 >Method</h4>
             {% for recipe in step_split %}
             <ul>
-              <li><h6 class="text-center">{{recipe}}</h6></li></ul>
+             <li> <h6>{{recipe}}</h6> </li>
+              <ul>
               {% endfor %}
          </div>
      </div>
