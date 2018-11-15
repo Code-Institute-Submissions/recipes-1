@@ -15,19 +15,10 @@
         <nav class="nav-color">
     <div class="nav-wrapper">
       <a style="
-    text-decoration: none;
-    padding-left: 80px;
-    color: white;" href="{{url_for('get_recipe',register_id=register._id)}}" class="brand-logo">Burger Recipes</a>
+    text-decoration: none;color:white; padding-left:80px;" href="{{url_for('get_recipe',register_id=register._id)}}" class="brand-logo brand2">BurgerRecipes</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down padding1">
         <li><a style="text-decoration: none;color: white;" href="{{url_for('add_recipes',register_id=register._id)}}">Add Recipe</a></li>
-       <!--  <li>
-                 <form action='{{url_for("search_recipes",register_id=register._id)}}' method="POST" >
-        <div>
-          <input id="search" name='search'type="search" class="validate"  placeholder="search your recipe">
-        </div>
-        </form>
-        </li> !-->
         <li class="s-icon">
               <a style="text-decoration: none;color: white;" href="{{url_for('search',register_id=register._id)}}" id="addClass"><i class="material-icons">search</i></a>
             </li>
