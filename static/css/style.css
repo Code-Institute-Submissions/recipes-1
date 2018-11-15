@@ -109,6 +109,9 @@
 .recipe-detail-padding{
     padding-left: 14px;
 }
+.img-box-shadow{
+    box-shadow: 0px 0px 20px 0px;
+}
 /* mobile view  */
 @media(max-width:768px){
     .Image3{
