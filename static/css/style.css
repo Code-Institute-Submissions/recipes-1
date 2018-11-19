@@ -96,6 +96,20 @@
     height: 20%;
     box-shadow: 0px 1px 20px 0px black;
 }
+.user-title{
+    width: 40%;
+    background-color: #f7492a;
+    border-radius: 4px;
+    font-size: 20px;
+    padding-left: 18px;
+    color: white;
+    margin-top: 6px;
+    margin-bottom: 20px;
+    padding: 10px;
+    height: 20%;
+    box-shadow: 0px 1px 20px 0px black;
+    margin: auto;
+}
 .recipe-title-h2{
     font-size: 26px;
     font-weight: 500;
@@ -112,6 +126,25 @@
 .img-box-shadow{
     box-shadow: 0px 0px 20px 0px;
 }
+.input-field-boxShadow{
+    border-radius: 4px;
+    box-shadow: 0px 0px 3px 1px;
+    margin-top: 10px;
+}
+.form-boxShadow{
+    background-color: white;
+    width: 50%;
+    margin: auto;
+    box-shadow: 0px 0px 6px 1px;
+    color: black;
+}
+.btn-margin-bottom{
+    margin-bottom: 10px;
+}
+.font-size-for-button{
+    font-size:15px;
+    font-weight:600;
+}
 /* mobile view  */
 @media(max-width:768px){
     .Image3{
@@ -121,6 +154,9 @@
 .recipe-title {
      width: 100%; 
     
+}
+.form-boxShadow{
+    width: 100%;
 }
 body {
         height:100vh;
