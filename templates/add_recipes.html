@@ -2,23 +2,23 @@
 {% block content %}
 <section class="container bg4 space">
 <h1>Add Recipes</h1>
-<div class="row">
+ <div class="row">
     <form action='{{url_for("insert_recipes",register_id=register._id)}}' method="POST"class="col s12">
       <div class="row">
         <div class="input-field col s6">
           <i class="material-icons prefix">account_circle</i>
           <input id="name" name='name'type="text" class="validate" placeholder="Recipe Name" required>
-        </div>
-        </div>
-        <div class="row">
-        <div class="input-field col s6">
-          <i class="material-icons prefix">shopping_basket</i>
-          <input id="ingredients" name='ingredients'type="text" class="validate remove_field" placeholder="Ingredients" required>
+           </div>
+           </div>
+           <div class="row">
+           <div class="input-field col s6">
+            <i class="material-icons prefix">shopping_basket</i>
+            <input id="ingredients" name='ingredients'type="text" class="validate remove_field" placeholder="Ingredients" required>
           
-        </div>
-</div>
-      </div>
-      <div class="row">
+            </div>
+           </div>
+          </div>
+          <div class="row">
           <div class="input-field col s6">
           <i class="material-icons prefix">description</i>
           <textarea name="steps" id="steps" class="materialize-textarea" data-length="2500" placeholder="Steps"  required></textarea>
