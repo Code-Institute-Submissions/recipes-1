@@ -66,18 +66,25 @@
      <div class="row">
          
          <div class="col-lg-4 col-sm-12">
-             <h4>Ingredients<i class="material-icons prefix">shopping_basket</i></h4>
+             <h4 class="text-shadow">Ingredients<i class="material-icons prefix">shopping_basket</i></h4>
+             <div class="text-font">
              {{recipes.ingredients }}
-             
+             </div>
          </div>
          
          <div class="col-lg-8 col-sm-12">
-             <h4 >Method</h4>
-            {% for recipe in step_split %}
+             <h4 class="text-shadow">Method</h4>
+        <div style="font-family: -webkit-pictograph;">
             <ul>
+            {% for recipe in step_split %}
+            
              <li> <h6>{{recipe}}</h6> </li>
-              <ul>
+              
+                 
               {% endfor %}
+              </ul>
+              </div>
+               
          </div>
      </div>
     
